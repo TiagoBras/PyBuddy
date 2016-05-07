@@ -1,2 +1,4 @@
 include LICENSE.txt
 include README.md
+recursive-include pybuddy *.tpl *.ini
+recursive-include tests *py
