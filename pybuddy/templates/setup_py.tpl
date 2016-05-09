@@ -30,5 +30,7 @@ setup(
         'console_scripts': [
             '{entry_point} = {package_name}.{module_name}:main'
         ]
-    }
+    },
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest']
 )

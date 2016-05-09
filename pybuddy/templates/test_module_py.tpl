@@ -3,6 +3,7 @@ from __future__ import absolute_import, print_function, division
 
 import sys
 import os
+import pytest
 
 PROJECT_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
