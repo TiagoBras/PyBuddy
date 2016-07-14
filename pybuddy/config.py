@@ -6,12 +6,14 @@ from constants import CONFIG_PATH
 from git import get_git_value
 
 if sys.version_info < (3,):
-    from ConfigParser import ConfigParser 
+    from ConfigParser import SafeConfigParser
 else:
-    from configparser import ConfigParser
-
+    from configparser import SafeConfigParser
 
 def default_config_values():
+    config = SafeConfigParser()
+    config.read(CONFIG_PATH)
+
     default_values  = {
         'create': {
             'author':        get_git_value('user.name'),
@@ -26,12 +28,10 @@ def default_config_values():
     if not os.path.isfile(CONFIG_PATH):
         return default_values
 
-    config = ConfigParser()
-    config.read(CONFIG_PATH)
-
     # Override the default values with the ones in the config file
-    for section in config.sections():
-        if section in default_values:
+    for section, options in default_values.items():
+        for key in options:
+            if section in config.sections() and 
             for key, value in config[section].items():
                 if key in default_values[section]:
                     default_values[section][key] = value

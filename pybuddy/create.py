@@ -55,14 +55,9 @@ def create_project(name,
     root_dir, project_name = os.path.split(os.path.abspath(name))
 
     # Template variables
-    if package_name is None:
-        package_name = project_name.lower()
-
-    if module_name is None:
-        module_name = project_name.lower()
-
-    if entry_point is None:
-        entry_point = project_name.lower()
+    package_name = package_name or project_name.lower()
+    module_name = module_name or project_name.lower()
+    entry_point = entry_point or project_name.lower()
 
     # Directories paths
     project_dir = os.path.join(root_dir, project_name)
@@ -98,15 +93,15 @@ def create_project(name,
 
     files = {
         j_project('LICENSE.txt'): j_license(license),
-        j_project('setup.py'):    j_templates('setup_py.tpl'),
-        j_project('README.md'):   j_templates('README_md.tpl'),
-        j_project('MANIEST.in'):  j_templates('MANIFEST_in.tpl'),
+        j_project('setup.py'):    j_templates('setup.py.tpl'),
+        j_project('README.md'):   j_templates('README.md.tpl'),
+        j_project('MANIEST.in'):  j_templates('MANIFEST.in.tpl'),
         j_project('VERSION'):     j_templates('VERSION.tpl'),
-        j_project('setup.cfg'):   j_templates('setup_cfg.tpl'),
-        j_project('pytest.ini'):  j_templates('pytest_ini.tpl'),
-        j_package(module_name):   j_templates('module_py.tpl'),
-        j_package('__init__'):    j_templates('__init___py.tpl'),
-        j_tests(module_name):     j_templates('test_module_py.tpl')
+        j_project('setup.cfg'):   j_templates('setup.cfg.tpl'),
+        j_project('pytest.ini'):  j_templates('pytest.ini.tpl'),
+        j_package(module_name):   j_templates('module.py.tpl'),
+        j_package('__init__'):    j_templates('__init__.py.tpl'),
+        j_tests(module_name):     j_templates('test_module.py.tpl')
     }
 
     # Create all files

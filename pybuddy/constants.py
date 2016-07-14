@@ -8,4 +8,4 @@ TEMPLATES_PATH = os.path.join(os.path.dirname(__file__), 'templates')
 LICENSES_PATH = os.path.join(TEMPLATES_PATH, 'licenses')
 
 # PyBuddy config file path
-CONFIG_PATH = os.path.join(os.path.expanduser('~'), '.pybuddy.ini')
+CONFIG_PATH = os.path.expanduser('~/.pybuddy.ini')
