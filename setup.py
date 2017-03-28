@@ -23,7 +23,7 @@ setup(
 	author='Tiago Bras',
 	author_email='tiagodsbras@gmail.com',
 	license='MIT',
-	url='',
+	url='https://github.com/TiagoBras/PyBuddy',
 	packages=find_packages(exclude=[]),
 	entry_points={
 		'console_scripts': [
