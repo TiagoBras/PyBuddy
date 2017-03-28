@@ -2,8 +2,8 @@ import os
 import sys
 import subprocess
 
-from constants import CONFIG_PATH
-from git import get_git_value
+from pybuddy.constants import CONFIG_PATH
+from pybuddy.git import get_git_value
 
 if sys.version_info < (3,):
     from ConfigParser import SafeConfigParser
@@ -31,9 +31,9 @@ def default_config_values():
     # Override the default values with the ones in the config file
     for section, options in default_values.items():
         for key in options:
-            if section in config.sections() and 
-            for key, value in config[section].items():
-                if key in default_values[section]:
-                    default_values[section][key] = value
+            if section in config.sections(): 
+                for key, value in config[section].items():
+                    if key in default_values[section]:
+                        default_values[section][key] = value
 
     return default_values

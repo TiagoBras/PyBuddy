@@ -27,8 +27,8 @@ Notes:
 """
 import os
 
-import utils
-from constants import TEMPLATES_PATH, LICENSES_PATH
+from pybuddy import utils
+from pybuddy.constants import TEMPLATES_PATH, LICENSES_PATH
 
 LICENSES = {
     'agplv3': 'AGPLv3.tpl',

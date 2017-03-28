@@ -2,11 +2,10 @@ import os
 import sys
 import argparse
 
-import config
-
-from git import git_init
-from create import create_project
-from virtualenv import create_virtualenv
+from pybuddy import config
+from pybuddy.git import git_init
+from pybuddy.create import create_project
+from pybuddy.virtualenv import create_virtualenv
 
 def main():
     args = _parse_args(sys.argv[1:])
@@ -33,39 +32,42 @@ def _parse_args(args):
     default_values = config.default_config_values()
     create_values = default_values['create']
 
-    parser = argparse.ArgumentParser(prog='PROG')
-    subparsers = parser.add_subparsers(description='create, config')
+    parser = argparse.ArgumentParser(description="PyBuddy - Generate a well structured python project")
+    # subparsers = parser.add_subparsers(description='create, config')
 
-    create = subparsers.add_parser('create', 
-            description="Create a python project")
+    # create = subparsers.add_parser('create', 
+    #         description="Create a python project")
 
-    create.add_argument('name', help="Project's name")
-    create.add_argument('--author', help="Author's name", 
+    parser.add_argument('name', help="Project's name")
+    parser.add_argument('--author', help="Author's name", 
         default=create_values['author'])
-    create.add_argument('--email', help="Author's email",
+    parser.add_argument('--email', help="Author's email",
         default=create_values['email'])
-    create.add_argument('--description', help="Project's description",
+    parser.add_argument('--description', help="Project's description",
         default='')
-    create.add_argument('--license', help="Project's license", 
+    parser.add_argument('--license', help="Project's license", 
         default=create_values['license'])
-    create.add_argument('--entry-point', help="Application's entry point name",
+    parser.add_argument('--entry-point', help="Application's entry point name",
         default=None)
-    create.add_argument('--version', help="Project's initial version",
+    parser.add_argument('--version', help="Project's initial version",
         default=create_values['version'])
-    create.add_argument('--package-name', help="Package name",
+    parser.add_argument('--package-name', help="Package name",
         default=None)
-    create.add_argument('--module-name', help="Module's name",
+    parser.add_argument('--module-name', help="Module's name",
         default=None)
-    create.add_argument('--url', help="Project's URL",
+    parser.add_argument('--url', help="Project's URL",
         default='')
-    create.add_argument('--skip-git-init', help="Skip git repository creation",
+    parser.add_argument('--skip-git-init', help="Skip git repository creation",
         default=create_values['skip_git_init'], action='store_true')
-    create.add_argument('--virtualenv', help="Create a virtual environment",
+    parser.add_argument('--virtualenv', help="Create a virtual environment",
         default=create_values['virtualenv'], action='store_true')
-    create.add_argument('--virtualenv-python', help="Python path",
+    parser.add_argument('--virtualenv-python', help="Python path",
         default=None, metavar='PYTHON')
 
-    return parser.parse_args(args)
+
+    res = parser.parse_args(args)
+    print(res)
+    return res
 
 if __name__ == '__main__':
     main()

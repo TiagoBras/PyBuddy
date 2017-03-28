@@ -1,7 +1,7 @@
 import sys
 import os
 
-from utils import which, call
+from pybuddy.utils import which, call
 
 
 def create_virtualenv(path, python_path=None):

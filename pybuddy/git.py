@@ -3,8 +3,8 @@ import os
 import shutil
 import subprocess
 
-import utils
-from constants import TEMPLATES_PATH
+from pybuddy import utils
+from pybuddy.constants import TEMPLATES_PATH
 
 def git_init(project_path):
     """Calls 'git init' in {project_path}"""
