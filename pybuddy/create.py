@@ -49,7 +49,8 @@ def create_project(name,
                    package_name=None,
                    module_name=None,
                    url='',
-                   entry_point=None):
+                   entry_point=None,
+                   setup_tests=False):
 
     # Split path into root directory and project name
     root_dir, project_name = os.path.split(os.path.abspath(name))
@@ -81,7 +82,10 @@ def create_project(name,
         'package_name': package_name,
         'module_name': module_name,
         'url': url,
-        'entry_point': entry_point
+        'entry_point': entry_point,
+        'setup_requirements': "'pytest-runner'" if setup_tests else '',
+        'tests_requirements': "'pytest'" if setup_tests else '',
+        'setup_cfg_alias': 'test=pytest' if setup_tests else ''
     }
 
     # Join helpers
@@ -98,11 +102,13 @@ def create_project(name,
         j_project('MANIEST.in'):  j_templates('MANIFEST.in.tpl'),
         j_project('VERSION'):     j_templates('VERSION.tpl'),
         j_project('setup.cfg'):   j_templates('setup.cfg.tpl'),
-        j_project('pytest.ini'):  j_templates('pytest.ini.tpl'),
         j_package(module_name):   j_templates('module.py.tpl'),
         j_package('__init__'):    j_templates('__init__.py.tpl'),
-        j_tests(module_name):     j_templates('test_module.py.tpl')
     }
+
+    if setup_tests:
+        files[j_tests(module_name)] = j_templates('test_module.py.tpl')
+        files[j_project('pytest.ini')] = j_templates('pytest.ini.tpl')
 
     # Create all files
     for new_file, template_file in files.items():

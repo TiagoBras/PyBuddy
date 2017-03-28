@@ -2,4 +2,4 @@
 description-file = README.md
 
 [aliases]
-test=pytest
+{setup_cfg_alias}

@@ -31,6 +31,6 @@ setup(
             '{entry_point} = {package_name}.{module_name}:main'
         ]
     },
-    setup_requires=['pytest-runner'],
-    tests_require=['pytest']
+    setup_requires=[{setup_requirements}],
+    tests_require=[{tests_requirements}]
 )

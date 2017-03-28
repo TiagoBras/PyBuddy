@@ -19,10 +19,11 @@ def main():
         package_name=args.package_name,
         module_name=args.module_name,
         url=args.url,
-        entry_point=args.entry_point
+        entry_point=args.entry_point,
+        setup_tests=args.tests
     )
 
-    if not args.skip_git_init:
+    if args.git:
         git_init(path)
 
     if args.virtualenv:
@@ -49,6 +50,7 @@ def _parse_args(args):
         default=create_values['license'])
     parser.add_argument('--entry-point', help="Application's entry point name",
         default=None)
+    parser.add_argument('--tests', help="Add tests to project (py.test framework)", action="store_true", default=False)
     parser.add_argument('--version', help="Project's initial version",
         default=create_values['version'])
     parser.add_argument('--package-name', help="Package name",
@@ -57,7 +59,7 @@ def _parse_args(args):
         default=None)
     parser.add_argument('--url', help="Project's URL",
         default='')
-    parser.add_argument('--skip-git-init', help="Skip git repository creation",
+    parser.add_argument('--git', help="Create git repository",
         default=create_values['skip_git_init'], action='store_true')
     parser.add_argument('--virtualenv', help="Create a virtual environment",
         default=create_values['virtualenv'], action='store_true')
@@ -66,7 +68,7 @@ def _parse_args(args):
 
 
     res = parser.parse_args(args)
-    print(res)
+
     return res
 
 if __name__ == '__main__':

@@ -20,7 +20,7 @@ def default_config_values():
             'email':         get_git_value('user.email'),
             'license':       'MIT',
             'version':       '0.0.1',
-            'skip_git_init': False,
+            'skip_git_init': True,
             'virtualenv':    False
         }
     }
