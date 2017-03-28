@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
 
 try:
     from setuptools import setup, find_packages
@@ -26,7 +27,7 @@ setup(
 	packages=find_packages(exclude=[]),
 	entry_points={
 		'console_scripts': [
-			'pybuddy = pybuddy.pybuddy:main'
+			'pybuddy = pybuddy.cli:main'
 		]
 	}
 )
