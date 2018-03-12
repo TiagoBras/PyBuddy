@@ -2,7 +2,7 @@ How to Install - Python 3
 =========================
 
 ```Bash
-    $ pip install pybuddy
+  $ pip install pybuddy
 ```
 
 How to use
